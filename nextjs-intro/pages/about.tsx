@@ -1,8 +1,5 @@
-import NavBar from "../components/NavBar";
+import HeadTitle from "../components/HeadTitle";
 
-export default function NotImportant() {
-    return <div>
-        <NavBar/>
-        <h1>About</h1>
-    </div>
-  }
+export default function About() {
+    return (<> < HeadTitle title = "about" /> </>)
+}
