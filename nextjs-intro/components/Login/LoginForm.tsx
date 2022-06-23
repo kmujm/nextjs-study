@@ -1,14 +1,14 @@
-export default function LoginForm() {
+export default function LoginForm({onEmailChange, onPwdChange} : any) {
     return (
         <>
         <div className="login_form_area">
               <div className="input_area">
                 <label htmlFor="user_id" className="input_label">아이디</label>
-                <input type="text" className="input_text" id="user_id" placeholder="아이디를 입력하세요" />
+                <input type="text" className="input_text" id="user_id" onChange={onEmailChange} placeholder="아이디를 입력하세요" />
               </div>
               <div className="input_area">
                 <label htmlFor="user_password" className="input_label">비밀번호</label>
-                <input type="password" className="input_text" id="user_password" placeholder="비밀번호를 입력하세요" />
+                <input type="password" className="input_text" id="user_password" onChange={onPwdChange} placeholder="비밀번호를 입력하세요" />
                 <a href="" className="link_find_password">비밀번호를 잊어 버렸습니까?</a>
               </div>
               <div className="input_area">

@@ -6,21 +6,18 @@ export default function Home({ results }: any) {
   const router = useRouter();
   const onClick = (id: string, title: string) => {
     router.push({
-      pathname: `/movies/${id}`,
-      query: {
-        title,
-      }
-    }, `/movies/${id}`);
+      pathname: `/movies/${title}/${id}`,
+    });
   }
   
     return (
         <div className="container">
             <HeadTitle title="Home"/> 
-            {results?.map((movie) => (          
+            {results?.map((movie : object) => (          
                 <div onClick={() => onClick(movie.id, movie.original_title)} className="movie" key={movie.id}>
                   <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
                   <h4>
-                  <Link key={movie.id} href={`/movies/${movie.id}`}>
+                  <Link href={`/movies/${movie.original_title}/${movie.id}`}>
                     <a>{movie.original_title}</a>
                   </Link>
                   </h4>              
