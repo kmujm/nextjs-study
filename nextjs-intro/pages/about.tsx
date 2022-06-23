@@ -1,4 +1,4 @@
-import HeadTitle from "../components/HeadTitle";
+import HeadTitle from "../components/Common/HeadTitle";
 
 export default function About() {
     return (<> < HeadTitle title = "about" /> </>)
