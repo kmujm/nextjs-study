@@ -1,4 +1,4 @@
-export default function HeadTitle({children} : any) {
+export default function ContentCommon({children} : any) {
     return (
         <> 
         <div className = "content" role = "main" > 

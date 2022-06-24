@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { SyntheticEvent, useEffect, useState } from "react"
 import Button from "../Common/Button";
 
-export default function LoginForm() {
+export default function SignupForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
@@ -16,7 +16,7 @@ export default function LoginForm() {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/auth/login", JSON.stringify(data), {
+            const response = await axios.post("http://localhost:3000/auth/signup", JSON.stringify(data), {
                 headers: {
                     "Content-Type": 'application/json',
                     withCredentials: true, 
@@ -25,12 +25,7 @@ export default function LoginForm() {
             console.log(JSON.stringify(response))
         } catch (error: any) {
             // console.log(error)
-            if(error.response.status === 401) {
-                alert('로그인 실패')
-            }
-            else if (error.response.status === 400) {
-                alert("data가 이상")
-            }
+            console.log(error.response.status)
         }
     }
 
@@ -52,7 +47,7 @@ export default function LoginForm() {
                 <label htmlFor="saveid" className="input_label">로그인 상태 유지하기</label>
               </div>
             </div>
-            <Button onClick={submitOnClick} text="로그인"/>
+            <Button onClick={submitOnClick} text="회원가입"/>
             <style jsx>
                 {`
                 .login_form_area {
