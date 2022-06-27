@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const API_KEY = process.env.API_KEY
+const SERVER = process.env.SERVER
 
 const nextConfig = {
   reactStrictMode: true,
@@ -25,12 +26,12 @@ const nextConfig = {
       // CORS 해결
       {
         source: "/auth/login",
-        destination : "https://cac6-14-35-253-174.jp.ngrok.io/auth/login"
+        destination : `${SERVER}/auth/login`
       },
       // CORS 해결
       {
         source: "/auth/signup",
-        destination : "https://cac6-14-35-253-174.jp.ngrok.io/auth/signup"
+        destination : `${SERVER}/auth/signup`
       },
     ]
 

@@ -1,14 +1,18 @@
 import axios from "axios";
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
+import { login } from "../../redux/userSlice";
 import Button from "../Common/Button";
 
 export default function LoginForm() {
-    const dispatch = useDispatch();
     const [form, setForm] = useState({
         email: "",
         password: "",
     })
+
+    const { user } = useSelector((state : any) => state.auth);
+    const dispatch = useDispatch();
+    console.log(user)
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -31,7 +35,8 @@ export default function LoginForm() {
             if(response.status === 200) {
                 console.log(response)
                 console.log(response.data.accessToken)
-                // dispatch(form.email, response.data.accessToken)
+                dispatch(login(response.data.accessToken))
+                console.log(user)
             }
         } catch (error: any) {
             // console.log(error)
@@ -61,7 +66,7 @@ export default function LoginForm() {
               </div>
               <div className="input_area">
                 <input type="checkbox" className="input_checkbox" id="saveid" />
-                <label htmlFor="saveid" className="input_label">로그인 상태 유지하기</label>
+                <label htmlFor="saveid" className="input_label">시작{user}끝 로그인 상태 유지하기</label>
               </div>
             </div>
             <Button onClick={submitOnClick} text="로그인"/>
