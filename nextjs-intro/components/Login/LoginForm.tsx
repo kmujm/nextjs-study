@@ -10,9 +10,8 @@ export default function LoginForm() {
         password: "",
     })
 
-    const { user } = useSelector((state : any) => state.auth);
+    const user = useSelector((state : any) => state.auth.value);
     const dispatch = useDispatch();
-    console.log(user)
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -35,7 +34,7 @@ export default function LoginForm() {
             if(response.status === 200) {
                 console.log(response)
                 console.log(response.data.accessToken)
-                dispatch(login(response.data.accessToken))
+                dispatch(login({user: form.email, token : response.data.accessToken}))
                 console.log(user)
             }
         } catch (error: any) {
@@ -66,10 +65,14 @@ export default function LoginForm() {
               </div>
               <div className="input_area">
                 <input type="checkbox" className="input_checkbox" id="saveid" />
-                <label htmlFor="saveid" className="input_label">시작{user}끝 로그인 상태 유지하기</label>
+                <label htmlFor="saveid" className="input_label">로그인 상태 유지하기</label>
               </div>
             </div>
             <Button onClick={submitOnClick} text="로그인"/>
+            <div>
+                user : {user.user}
+                token : {user.token}
+            </div>
             <style jsx>
                 {`
                 .login_form_area {

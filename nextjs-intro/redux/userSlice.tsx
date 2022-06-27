@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+
 const getInitialValues = () => {
     let isLogin: boolean = false;
     const token = localStorage.getItem("token")
@@ -10,21 +11,31 @@ const getInitialValues = () => {
     }
 } 
 
+const initialState = {
+    isAuthenticated : false,
+    value : {
+        user: "test",
+        token: "sdfadfad",
+    }
+}
+
 export const userSlice = createSlice({
     name:"auth",
-    initialState: {
-        user: "test",
-        token: "sldkfjldfa2l3k" /*getInitialValues().token*/ ,
-    },
+    initialState: initialState,
     reducers: {
         login: (state, action) => {
-            state.user = action.payload;
-            state.token = action.payload.token;
+            state.isAuthenticated = true;
+            state.value = action.payload;
             // localStorage.setItem("user", action.payload);
             // localStorage.setItem("token", action.payload.token);
         },
         logout: (state) => {
-            state.token = "" /* null */;
+            state.isAuthenticated = false;
+            state.value = {
+                user : "",
+                token: ""
+
+            } /* null */;
             // localStorage.removeItem("user")
             // localStorage.removeItem("token")
         },

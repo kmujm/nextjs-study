@@ -3,6 +3,13 @@ import { useRouter } from "next/router";
 import { SyntheticEvent, useEffect, useState } from "react"
 import Button from "../Common/Button";
 
+interface signupForm {
+    username : string,
+    password : string,
+    role : string,
+    additionalInfo? : object
+}
+
 export default function SignupForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,7 +19,8 @@ export default function SignupForm() {
         e.preventDefault();
         let data = {
             "username" : email,
-            "password": password
+            "password": password,
+            "role" : "carrier",
         }
 
         try {
