@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../redux/userSlice";
+import setAuthToken from "../../utils/setAuthToken";
 import Button from "../Common/Button";
 
 export default function LoginForm() {
@@ -35,7 +36,7 @@ export default function LoginForm() {
                 console.log(response)
                 console.log(response.data.accessToken)
                 dispatch(login({user: form.email, token : response.data.accessToken}))
-                console.log(user)
+                setAuthToken(user.token)
             }
         } catch (error: any) {
             // console.log(error)
@@ -69,10 +70,6 @@ export default function LoginForm() {
               </div>
             </div>
             <Button onClick={submitOnClick} text="로그인"/>
-            <div>
-                user : {user.user}
-                token : {user.token}
-            </div>
             <style jsx>
                 {`
                 .login_form_area {

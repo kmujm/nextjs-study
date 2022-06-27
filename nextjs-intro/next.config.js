@@ -33,6 +33,10 @@ const nextConfig = {
         source: "/auth/signup",
         destination : `${SERVER}/auth/signup`
       },
+      {
+        source: "/auth/user",
+        destination: `${SERVER}/auth/user`
+      }
     ]
 
   }
